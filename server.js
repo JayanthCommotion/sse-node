@@ -10,7 +10,6 @@ const port = process.env.PORT || 3502 ;
 app.use(express.json())
 app.use(cors({ origin : "*" }))
 
-
 const connections = {}
 const webhooks = {};
 
