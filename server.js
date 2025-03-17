@@ -85,9 +85,9 @@ app.get("/prod/code",(req,res)=>{
     // This Url will be Hit By the Integrations App which contains [code & randomKey] that needs to be sent to Frontend;
     const { code , state } = req.query;
     try {
-        const { randomKey , code_verifier } = JSON.parse(Buffer.from(state,"base64").toString())
-        const frontendResponse = connections[randomKey];
-        console.log(randomKey,code_verifier)
+        const { sessionId , code_verifier } = JSON.parse(Buffer.from(state,"base64").toString())
+        const frontendResponse = connections[sessionId];
+        console.log(sessionId,code_verifier)
         if(!frontendResponse){
             res.status(401).send("Frontend Have not registered for SSE Events");
             // May be we need some sort of timeout so that we can inform that the authentication flow is hault;
